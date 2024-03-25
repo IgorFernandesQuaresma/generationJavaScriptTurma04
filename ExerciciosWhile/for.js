@@ -6,7 +6,7 @@ let somaImpares = 0
 
     for (let contador = 0; contador < 10; contador++) {
         
-        numero = readline.question("Digite um numero");
+        numero = readline.question("Digite um numero ");
         if (numero % 2 === 0) {
             somaPares++
         } else {
