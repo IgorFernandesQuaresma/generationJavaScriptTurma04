@@ -3,15 +3,16 @@ let matriz = [
   [4, 5, 6],
   [7, 8, 9],
 ];
-console.table(`Matriz principal: ${matriz[0][0]}`);
-console.table(`Matriz principal: ${matriz[1][1]}`);
-console.table(`Matriz principal: ${matriz[2][2]}`);
-console.table(`Matriz secundaria: ${matriz[0][2]}`);
-console.table(`Matriz secundaria: ${matriz[1][1]}`);
-console.table(`Matriz secundaria: ${matriz[2][0]}`);
 
 let contadorPrincipal = 0;
 let contadorSecundario = 0;
+
+for (let index = 0; index < matriz.length; index++) {
+  console.table(`Matriz principal: ${matriz[index][index]}`);
+  console.table(`Matriz secundaria: ${matriz[index][matriz.length - 1 - index]}`)
+}
+
+
 
 for (let indexLinha = 0; indexLinha < matriz.length; indexLinha++) {
 

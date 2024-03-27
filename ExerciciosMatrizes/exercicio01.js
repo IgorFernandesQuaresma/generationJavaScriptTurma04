@@ -10,7 +10,7 @@ let arrNum = [0,1,2,3,4,5,6,7,8,9];
 let num;
 num = readline.questionInt("Digite um numero inteiro: "); 
 
-let posicao = arrNum.indexOf(num)
+let posicao = arrNum.indexOf(num); //salvei a posição para apresentar no console
 
 if(posicao > -1){
     console.log(` ${num} esta no array na posicao ${posicao}`);
