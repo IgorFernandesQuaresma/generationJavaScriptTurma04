@@ -1,4 +1,3 @@
-import { create } from "domain";
 
 export abstract class Produto {
 
@@ -50,8 +49,23 @@ export abstract class Produto {
     }
 
     public visualizar(): void{
+        
+        let tipo: string = ""
+
+        switch (this._tipo) {
+            case 1:
+                tipo = "Cosmeticos";
+                break;
+            case 2:
+                tipo = "Medicamentos";
+                break;
+            default:
+                tipo = "Tipo de produto não Identificado";
+                break;
+        }
+
         console.log("***************************************");
-        console.log("           Dados do Atleta             ");
+        console.log("           Dados do Produt             ");
         console.log("***************************************");
         console.log("Nome do produto é: ", this._nome);
         console.log("Codigo do produto é: ", this._numero);
