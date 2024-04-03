@@ -18,6 +18,7 @@ export class Cosmeticos extends Produto {
             this._fragancia = fragancia;
         }    
         
+        
         public visualizar(): void{
             super.visualizar()
             console.log(`A fragancia do cosmetico é ${this._fragancia}`)

@@ -36,7 +36,7 @@ export class ProdutoController implements ProdutoRepository {
     consultarProdutoporId(numero: number): void {
         let produto = this.listaProdutos.find(produto => produto.numero === numero);
         if (produto) {
-            console.log(`O produto é ${produto.numero}`); 
+            console.log(`O produto é ${produto.numero} e o seu nome é ${produto.nome}`); 
    
         } else {
             console.log(`Nenhum produto encontrado com o ID ${numero}`);
@@ -45,18 +45,17 @@ export class ProdutoController implements ProdutoRepository {
 
 
     atualizarProduto(produto: Produto): void {
-        let buscarProdutos = this.buscarNoArray(produto.numero);
-
-        if (buscarProdutos != null) {
-
-            this.listaProdutos[this.listaProdutos.indexOf(buscarProdutos)] //passa o indice, o codigo dentro das chaves é só para retornar o numero do indice
-            // o que esta escrito acima é basicamente isso thi.listaProdutos[1]
-
-            console.log(`O produto ${produto.nome} foi atualizado com sucesso`)  
+        let buscaProduto = this.buscarNoArray(produto.numero);
+    
+        if (buscaProduto != null) {
+            const index = this.listaProdutos.indexOf(buscaProduto);
+            this.listaProdutos[index] = produto; // Atualiza o produto na lista de produtos
+            console.log(`O produto ${produto.numero} foi atualizado com sucesso`);
         } else {
-            console.log(`O produto ${produto.nome} não foi encontrado`)
+            console.log(`O produto com o ID: ${produto.numero} não foi encontrado`);
         }
     }
+    
 
 
     deletarProduto(numero: number): void {

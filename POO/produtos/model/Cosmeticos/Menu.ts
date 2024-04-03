@@ -13,6 +13,11 @@ export function main() {
     let generico: string;
     let produto: ProdutoController = new ProdutoController();
 
+    let pr1: Medicamentos = new Medicamentos(produto.gerarNumero(),"Teste", 2, 45, "sim");
+    let pr2: Cosmeticos = new Cosmeticos(produto.gerarNumero(), "teste 435", 1, 60, "Abacaxi")
+    produto.CriarProduto(pr1)
+    produto.CriarProduto(pr2) 
+
 while (true) {
 console.log("*****************************************************");
 console.log("                                                     ");
@@ -62,6 +67,7 @@ switch(opcao) {
         console.log("O produto é generico? ")
         generico = readline.question(" ")
         produto.CriarProduto(new Medicamentos (produto.gerarNumero(), nome, tipo, preco, generico))
+        
 
         break;
     } 
@@ -87,7 +93,32 @@ switch(opcao) {
         break;
 
     case 4:
-        
+        console.log("Vamos atualizar o produto selecionado.");
+        numero = readline.questionInt("Digite o Codigo do produto: ");
+        let buscaProduto = produto.buscarNoArray(numero)
+
+        if (buscaProduto != null) {
+
+            numero = buscaProduto.numero
+            nome = readline.question("Digite o nome do produto: ")
+            tipo = buscaProduto.tipo
+            preco = readline.questionFloat("Digite o novo preco: ").toFixed(2)
+
+            switch (tipo) {
+                case 1:
+                    fragancia = readline.question("Digite a fragancia: ")
+                    produto.atualizarProduto(new Cosmeticos(numero, nome, tipo, preco, fragancia))
+                    break;
+
+                case 2:
+                    generico = readline.question("Digite se é generico: ")
+                    produto.atualizarProduto(new Medicamentos(numero, nome, tipo, preco, generico))
+                    break;
+            }
+
+        } else { 
+            console.log(`Produto nao encontrado`);
+        }
     aguardar()      
     break;
         
