@@ -73,6 +73,15 @@ SELECT nome, ataque, defesa, raca, tb_classes.classe
 FROM tb_personagens INNER JOIN tb_classes 
 ON tb_personagens.classe_id = tb_classes.id;
 
+SELECT nome, ataque, defesa, raca, tb_classes.classe
+FROM tb_personagens INNER JOIN tb_classes 
+ON tb_personagens.classe_id = tb_classes.id where classe = "Barbaro/a";
+
+
+SELECT nome, ataque, defesa, raca, tb_classes.classe
+FROM tb_personagens INNER JOIN tb_classes 
+ON tb_personagens.classe_id = tb_classes.id like classe = '%Barbaro/a%';
+
 
 
 

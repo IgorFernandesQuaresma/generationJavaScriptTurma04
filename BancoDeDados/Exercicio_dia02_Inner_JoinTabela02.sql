@@ -1,76 +1,44 @@
+use db_cidade_dos_vegetais;
+use db_generation_game_online;
 
--- Criamos o banco de dados
-create database db_sucos;
-
--- Selecionamos a tabela para usar
-use db_rh;
-
--- Creiamos uma tabela
-create table tb_produtos(
-id bigint auto_increment,
-nome varchar (255) not null,
-quantidade Int,
-dataValidade date,
-preco decimal(6,2) not null,
-primary key (id)
-);	
-
--- selecionando na tabela
+select * from tb_categoria;	
 select * from tb_produtos;	
 
--- Inserindo itens na tabela
-insert into tb_produtos(nome,quantidade, dataValidade, preco) values ("Suco de amora", 10, '2025-11-01', 13.90);
-insert into tb_produtos(nome,quantidade, dataValidade, preco) values ("Suco de abacaxi", 12, '2025-11-01', 15.90);
-insert into tb_produtos(nome,quantidade, dataValidade, preco) values ("Suco de banana", 13, '2025-11-01', 12.90);
-insert into tb_produtos(nome,quantidade, dataValidade, preco) values ("Suco de morango", 11, '2025-11-01', 12.90);
-
--- ALTER TABLE - MODIFY
-
-alter table tb_produtos modify preco decimal (6,2);
-
-create table tb_funcionarios(
-id bigint auto_increment,
-nome varchar (255) not null,
-salario decimal (6,2),
-dataDeInicio date,
-primary key (id)
-);	
-
-insert into tb_funcionarios(nome, salario, dataDeInicio) values ("Igor", 8000.00, '2024-11-01');
-insert into tb_funcionarios(nome, salario, dataDeInicio) values ("Zezinho da padaria", 1500.00, '2024-11-01');
-insert into tb_funcionarios(nome, salario, dataDeInicio) values ("Ze lagosta", 3500.00, '2024-11-01');
-insert into tb_funcionarios(nome, salario, dataDeInicio) values ("Tião do gas", 2000.00, '2024-11-01');
-insert into tb_funcionarios(nome, salario, dataDeInicio) values ("João Leiteiro", 1450.00, '2024-11-01');
-
-select * from tb_funcionarios;	
-
-SELECT * FROM tb_funcionarios WHERE salario < 2000.00 and salario > 1450.00;
-
-UPDATE tb_funcionarios set salario = 2500.90 where id = 5;
-
-use db_sucos;
-
-create table tb_categorias(
-id bigint auto_increment,
-categoria varchar (255) not null,
-primary key (id)
-);	
-
-select * from tb_categorias;	
-
-INSERT INTO tb_categorias(categoria)
-VALUES ("Suco de fruta");
-
-INSERT INTO tb_categorias(categoria)
-VALUES ("Suco com Leite");
-
-INSERT INTO tb_categorias(categoria)
-VALUES ("Suco especial");
+insert into tb_categoria(categoria,fornecedor) 
+values ("Frutas", "Big horto");
+insert into tb_categoria(categoria,fornecedor) 
+values ("Legumes", "Big horto");
+insert into tb_categoria(categoria,fornecedor) 
+values ("Folhas", "Big horto");
+insert into tb_categoria(categoria,fornecedor) 
+values ("Ovos", "Big horto");
 
 
+insert into tb_produtos(nome, preço, validade, quantidade, tb_categoria_id) 
+values ("Abacaxi", 10.00, '2024-06-24', 15, 1);
+insert into tb_produtos(nome, preço, validade, quantidade, tb_categoria_id) 
+values ("Melao", 8.00, '2024-06-24', 8, 1);
+insert into tb_produtos(nome, preço, validade, quantidade, tb_categoria_id) 
+values ("Mamao", 12.00, '2024-06-24', 5, 1);
+insert into tb_produtos(nome, preço, validade, quantidade, tb_categoria_id) 
+values ("Uvas", 11.00, '2024-06-24', 12, 1);
+insert into tb_produtos(nome, preço, validade, quantidade, tb_categoria_id) 
+values ("Abobora Moranga", 11.00, '2024-06-24', 5, 2);
+insert into tb_produtos(nome, preço, validade, quantidade, tb_categoria_id) 
+values ("Alface", 11.00, '2024-06-24', 35, 3);
+insert into tb_produtos(nome, preço, validade, quantidade, tb_categoria_id) 
+values ("Ovos Brancos", 11.00, '2024-06-24', 12, 4);
 
- 
+SELECT * FROM tb_produtos WHERE preço < 10.00;
+SELECT * FROM tb_produtos WHERE preço > 7.00 and preço < 10.00;
+SELECT * FROM tb_produtos WHERE nome LIKE '%c%';
 
 
+SELECT nome, preço, validade, quantidade, tb_categoria.categoria
+FROM tb_produtos INNER JOIN tb_categoria 
+ON tb_produtos.tb_categoria_id = tb_categoria.id;
 
+SELECT nome, preço, validade, quantidade, tb_categoria.categoria
+FROM tb_produtos INNER JOIN tb_categoria 
+ON tb_produtos.tb_categoria_id = tb_categoria.id WHERE categoria = "folhas";
 
